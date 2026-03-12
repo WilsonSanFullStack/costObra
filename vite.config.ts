@@ -1,19 +1,24 @@
 import { defineConfig } from "vite"
 import react from "@vitejs/plugin-react"
 import electron from "vite-plugin-electron"
+import tailwindcss from "@tailwindcss/vite";
+
 
 export default defineConfig({
+  base: './',
   plugins: [
-    react(),
-
-    electron({
-      main: {
-        entry: "electron/main.ts"
+    electron([
+      {
+        entry: "./electrom/main.ts",
+        // onstart(options) {
+          // options.startup()
+        // }
       },
-
-      preload: {
-        input: "electron/preload.ts"
+      {
+        entry: "./electrom/preload.ts"
       }
-    })
+    ]),
+    tailwindcss(),
+    react(),
   ]
 })

@@ -1,5 +1,4 @@
-import { contextBridge } from "electron"
-
+import { contextBridge } from "electron";
 contextBridge.exposeInMainWorld("api", {
   ping: () => "pong"
-})
+});
