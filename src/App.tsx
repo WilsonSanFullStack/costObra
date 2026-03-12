@@ -1,12 +1,13 @@
 import { Routes, Route } from "react-router-dom";
 // import { useNavigate } from "react-router-dom";
-import { Home } from "./components/Home";
+import { Home } from "./components/view/Home";
+import { NavBar } from "./components/view/NavBar";
 
 
 export const App = () => {
   return (
-    <div className="bg-gray-500 min-w-full max-w-full min-h-full max-h-full">
-
+    <div className="">
+      <NavBar />
     <Routes>
       <Route path='/' element={<Home />}/> 
     </Routes>

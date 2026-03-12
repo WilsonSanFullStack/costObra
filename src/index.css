@@ -1,7 +1,5 @@
-
-
 @import "tailwindcss";
 
-* {
-  @apply bg-black max-w-full min-w-full min-h-full max-h-full text-gray-300 p-1
+:root {
+  @apply bg-black text-gray-300
 }
