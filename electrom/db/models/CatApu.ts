@@ -5,13 +5,13 @@ import type {
   CreationOptional
 } from "sequelize"
 
-export class Unidades extends Model<
-  InferAttributes<Unidades, { omit: "createdAt" | "updatedAt" | "deletedAt" }>,
-  InferCreationAttributes<Unidades>
+export class CatApu extends Model<
+  InferAttributes<CatApu, { omit: "createdAt" | "updatedAt" | "deletedAt" }>,
+  InferCreationAttributes<CatApu>
 > {
   declare id: CreationOptional<string>
   declare name: string
-  declare simbolo: string
+  declare activo: boolean
 
   declare createdAt: CreationOptional<Date>
   declare updatedAt: CreationOptional<Date>
@@ -19,7 +19,7 @@ export class Unidades extends Model<
 }
 
 export default (sequelize: Sequelize) => {
-  Unidades.init(
+  CatApu.init(
     {
       id: {
         type: DataTypes.UUID,
@@ -30,18 +30,18 @@ export default (sequelize: Sequelize) => {
         type: DataTypes.STRING,
         allowNull: false
       },
-      simbolo: {
-        type: DataTypes.STRING,
+      activo: {
+        type: DataTypes.BOOLEAN,
         allowNull: false
       },
     },
     {
       sequelize,
-      modelName: "Unidades",
+      modelName: "CatApu",
       paranoid: true,
       timestamps: true
     }
   )
 
-  return Unidades
+  return CatApu
 }

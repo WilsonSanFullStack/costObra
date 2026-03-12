@@ -48709,6 +48709,310 @@ Pkg.Deferrable;
 Pkg.Validator;
 Pkg.ValidationErrorItemOrigin;
 Pkg.ValidationErrorItemType;
+class Apu extends Model {
+}
+const initApu = (sequelize2) => {
+  Apu.init(
+    {
+      id: {
+        type: DataTypes.UUID,
+        defaultValue: DataTypes.UUIDV4,
+        primaryKey: true
+      },
+      name: {
+        type: DataTypes.STRING,
+        allowNull: false
+      },
+      code: {
+        type: DataTypes.STRING,
+        allowNull: false
+      },
+      activo: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false
+      }
+    },
+    {
+      sequelize: sequelize2,
+      modelName: "Apu",
+      paranoid: true,
+      timestamps: true
+    }
+  );
+  return Apu;
+};
+class ApuInsumos extends Model {
+}
+const initApuInsumos = (sequelize2) => {
+  ApuInsumos.init(
+    {
+      id: {
+        type: DataTypes.UUID,
+        defaultValue: DataTypes.UUIDV4,
+        primaryKey: true
+      },
+      name: {
+        type: DataTypes.STRING,
+        allowNull: false
+      },
+      cantidad: {
+        type: DataTypes.FLOAT,
+        allowNull: false
+      }
+    },
+    {
+      sequelize: sequelize2,
+      modelName: "ApuInsumos",
+      paranoid: true,
+      timestamps: true
+    }
+  );
+  return ApuInsumos;
+};
+class Capitulos extends Model {
+}
+const initCapitulos = (sequelize2) => {
+  Capitulos.init(
+    {
+      id: {
+        type: DataTypes.UUID,
+        defaultValue: DataTypes.UUIDV4,
+        primaryKey: true
+      },
+      name: {
+        type: DataTypes.STRING,
+        allowNull: false
+      },
+      codigo: {
+        type: DataTypes.STRING,
+        allowNull: false
+      },
+      orden: {
+        type: DataTypes.STRING,
+        allowNull: false
+      }
+    },
+    {
+      sequelize: sequelize2,
+      modelName: "Capitulos",
+      paranoid: true,
+      timestamps: true
+    }
+  );
+  return Capitulos;
+};
+class CatApu extends Model {
+}
+const initCatApu = (sequelize2) => {
+  CatApu.init(
+    {
+      id: {
+        type: DataTypes.UUID,
+        defaultValue: DataTypes.UUIDV4,
+        primaryKey: true
+      },
+      name: {
+        type: DataTypes.STRING,
+        allowNull: false
+      },
+      activo: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false
+      }
+    },
+    {
+      sequelize: sequelize2,
+      modelName: "CatApu",
+      paranoid: true,
+      timestamps: true
+    }
+  );
+  return CatApu;
+};
+class CatInsumos extends Model {
+}
+const initCapInsumos = (sequelize2) => {
+  CatInsumos.init(
+    {
+      id: {
+        type: DataTypes.UUID,
+        defaultValue: DataTypes.UUIDV4,
+        primaryKey: true
+      },
+      name: {
+        type: DataTypes.STRING,
+        allowNull: false
+      },
+      activo: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false
+      }
+    },
+    {
+      sequelize: sequelize2,
+      modelName: "CatInsumos",
+      paranoid: true,
+      timestamps: true
+    }
+  );
+  return CatInsumos;
+};
+class Insumos extends Model {
+}
+const initInsumos = (sequelize2) => {
+  Insumos.init(
+    {
+      id: {
+        type: DataTypes.UUID,
+        defaultValue: DataTypes.UUIDV4,
+        primaryKey: true
+      },
+      name: {
+        type: DataTypes.STRING,
+        allowNull: false
+      },
+      tipo: {
+        type: DataTypes.STRING,
+        allowNull: false
+      },
+      activo: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false
+      }
+    },
+    {
+      sequelize: sequelize2,
+      modelName: "Insumos",
+      paranoid: true,
+      timestamps: true
+    }
+  );
+  return Insumos;
+};
+class ListPrecio extends Model {
+}
+const initListPrecio = (sequelize2) => {
+  ListPrecio.init(
+    {
+      id: {
+        type: DataTypes.UUID,
+        defaultValue: DataTypes.UUIDV4,
+        primaryKey: true
+      },
+      name: {
+        type: DataTypes.STRING,
+        allowNull: false
+      },
+      fecha: {
+        type: DataTypes.DATE,
+        allowNull: false
+      }
+    },
+    {
+      sequelize: sequelize2,
+      modelName: "ListPrecio",
+      paranoid: true,
+      timestamps: true
+    }
+  );
+  return ListPrecio;
+};
+class Partidas extends Model {
+}
+const initPartidas = (sequelize2) => {
+  Partidas.init(
+    {
+      id: {
+        type: DataTypes.UUID,
+        defaultValue: DataTypes.UUIDV4,
+        primaryKey: true
+      },
+      codigo: {
+        type: DataTypes.STRING,
+        allowNull: false
+      },
+      descripcion: {
+        type: DataTypes.STRING,
+        allowNull: false
+      },
+      cantidad: {
+        type: DataTypes.FLOAT,
+        allowNull: false
+      },
+      orden: {
+        type: DataTypes.STRING,
+        allowNull: false
+      }
+    },
+    {
+      sequelize: sequelize2,
+      modelName: "Partidas",
+      paranoid: true,
+      timestamps: true
+    }
+  );
+  return Partidas;
+};
+class PrecioInsumos extends Model {
+}
+const initPrecioInsumos = (sequelize2) => {
+  PrecioInsumos.init(
+    {
+      id: {
+        type: DataTypes.UUID,
+        defaultValue: DataTypes.UUIDV4,
+        primaryKey: true
+      },
+      precio: {
+        type: DataTypes.DOUBLE,
+        allowNull: false
+      }
+    },
+    {
+      sequelize: sequelize2,
+      modelName: "PrecioInsumos",
+      paranoid: true,
+      timestamps: true
+    }
+  );
+  return PrecioInsumos;
+};
+class Project extends Model {
+}
+const initProject = (sequelize2) => {
+  Project.init(
+    {
+      id: {
+        type: DataTypes.UUID,
+        defaultValue: DataTypes.UUIDV4,
+        primaryKey: true
+      },
+      name: {
+        type: DataTypes.STRING,
+        allowNull: false
+      },
+      descripcion: {
+        type: DataTypes.STRING,
+        allowNull: false
+      },
+      fecha: {
+        type: DataTypes.DATE,
+        allowNull: false
+      },
+      activo: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false
+      }
+    },
+    {
+      sequelize: sequelize2,
+      modelName: "Project",
+      paranoid: true,
+      timestamps: true
+    }
+  );
+  return Project;
+};
 let Unidades$1 = class Unidades extends Model {
 };
 const initUnidades = (sequelize2) => {
@@ -48719,20 +49023,12 @@ const initUnidades = (sequelize2) => {
         defaultValue: DataTypes.UUIDV4,
         primaryKey: true
       },
-      dolar: {
-        type: DataTypes.FLOAT,
+      name: {
+        type: DataTypes.STRING,
         allowNull: false
       },
-      euro: {
-        type: DataTypes.FLOAT,
-        allowNull: false
-      },
-      gbp: {
-        type: DataTypes.FLOAT,
-        allowNull: false
-      },
-      porcentaje: {
-        type: DataTypes.FLOAT,
+      simbolo: {
+        type: DataTypes.STRING,
         allowNull: false
       }
     },
@@ -48753,13 +49049,23 @@ const sequelize = new Sequelize({
   storage: dbPath,
   logging: false
 });
+initApu(sequelize);
+initApuInsumos(sequelize);
+initCapitulos(sequelize);
+initCatApu(sequelize);
+initCapInsumos(sequelize);
+initInsumos(sequelize);
+initListPrecio(sequelize);
+initPartidas(sequelize);
+initPrecioInsumos(sequelize);
+initProject(sequelize);
 initUnidades(sequelize);
 const { Unidades: Unidades2 } = sequelize.models;
 const __filename$1 = fileURLToPath(import.meta.url);
 const __dirname$1 = path.dirname(__filename$1);
 let win = null;
 app.whenReady().then(async () => {
-  await sequelize.sync({ force: false });
+  await sequelize.sync({ force: true });
   console.log("🔹 Base de datos lista");
   function createWindow() {
     win = new BrowserWindow({
