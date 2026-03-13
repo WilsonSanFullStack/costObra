@@ -5,9 +5,9 @@ import type {
   CreationOptional
 } from "sequelize"
 
-export class Capitulos extends Model<
-  InferAttributes<Capitulos, { omit: "createdAt" | "updatedAt" | "deletedAt" }>,
-  InferCreationAttributes<Capitulos>
+export class Capitulo extends Model<
+  InferAttributes<Capitulo, { omit: "createdAt" | "updatedAt" | "deletedAt" }>,
+  InferCreationAttributes<Capitulo>
 > {
   declare id: CreationOptional<string>
   declare name: string
@@ -20,7 +20,7 @@ export class Capitulos extends Model<
 }
 
 export default (sequelize: Sequelize) => {
-  Capitulos.init(
+  Capitulo.init(
     {
       id: {
         type: DataTypes.UUID,
@@ -42,11 +42,11 @@ export default (sequelize: Sequelize) => {
     },
     {
       sequelize,
-      modelName: "Capitulos",
+      modelName: "Capitulo",
       paranoid: true,
       timestamps: true
     }
   )
 
-  return Capitulos
+  return Capitulo
 }

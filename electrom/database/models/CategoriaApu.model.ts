@@ -5,15 +5,13 @@ import type {
   CreationOptional
 } from "sequelize"
 
-export class Partidas extends Model<
-  InferAttributes<Partidas, { omit: "createdAt" | "updatedAt" | "deletedAt" }>,
-  InferCreationAttributes<Partidas>
+export class CategoriaApu extends Model<
+  InferAttributes<CategoriaApu, { omit: "createdAt" | "updatedAt" | "deletedAt" }>,
+  InferCreationAttributes<CategoriaApu>
 > {
   declare id: CreationOptional<string>
-  declare codigo: string
-  declare descripcion: string
-  declare cantidad: number
-  declare orden: string
+  declare name: string
+  declare activo: boolean
 
   declare createdAt: CreationOptional<Date>
   declare updatedAt: CreationOptional<Date>
@@ -21,37 +19,29 @@ export class Partidas extends Model<
 }
 
 export default (sequelize: Sequelize) => {
-  Partidas.init(
+  CategoriaApu.init(
     {
       id: {
         type: DataTypes.UUID,
         defaultValue: DataTypes.UUIDV4,
         primaryKey: true
       },
-      codigo: {
+      name: {
         type: DataTypes.STRING,
         allowNull: false
       },
-      descripcion: {
-        type: DataTypes.STRING,
-        allowNull: false
-      },
-      cantidad: {
-        type: DataTypes.FLOAT,
-        allowNull: false
-      },
-      orden: {
-        type: DataTypes.STRING,
+      activo: {
+        type: DataTypes.BOOLEAN,
         allowNull: false
       },
     },
     {
       sequelize,
-      modelName: "Partidas",
+      modelName: "CategoriaApu",
       paranoid: true,
       timestamps: true
     }
   )
 
-  return Partidas
+  return CategoriaApu
 }

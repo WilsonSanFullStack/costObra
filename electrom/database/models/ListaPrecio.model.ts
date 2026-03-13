@@ -5,9 +5,9 @@ import type {
   CreationOptional
 } from "sequelize"
 
-export class ListPrecio extends Model<
-  InferAttributes<ListPrecio, { omit: "createdAt" | "updatedAt" | "deletedAt" }>,
-  InferCreationAttributes<ListPrecio>
+export class ListaPrecio extends Model<
+  InferAttributes<ListaPrecio, { omit: "createdAt" | "updatedAt" | "deletedAt" }>,
+  InferCreationAttributes<ListaPrecio>
 > {
   declare id: CreationOptional<string>
   declare name: string
@@ -19,7 +19,7 @@ export class ListPrecio extends Model<
 }
 
 export default (sequelize: Sequelize) => {
-  ListPrecio.init(
+  ListaPrecio.init(
     {
       id: {
         type: DataTypes.UUID,
@@ -37,11 +37,11 @@ export default (sequelize: Sequelize) => {
     },
     {
       sequelize,
-      modelName: "ListPrecio",
+      modelName: "ListaPrecio",
       paranoid: true,
       timestamps: true
     }
   )
 
-  return ListPrecio
+  return ListaPrecio
 }

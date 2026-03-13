@@ -5,12 +5,13 @@ import type {
   CreationOptional
 } from "sequelize"
 
-export class CatInsumos extends Model<
-  InferAttributes<CatInsumos, { omit: "createdAt" | "updatedAt" | "deletedAt" }>,
-  InferCreationAttributes<CatInsumos>
+export class Insumo extends Model<
+  InferAttributes<Insumo, { omit: "createdAt" | "updatedAt" | "deletedAt" }>,
+  InferCreationAttributes<Insumo>
 > {
   declare id: CreationOptional<string>
   declare name: string
+  declare tipo: string
   declare activo: boolean
 
   declare createdAt: CreationOptional<Date>
@@ -19,7 +20,7 @@ export class CatInsumos extends Model<
 }
 
 export default (sequelize: Sequelize) => {
-  CatInsumos.init(
+  Insumo.init(
     {
       id: {
         type: DataTypes.UUID,
@@ -30,6 +31,10 @@ export default (sequelize: Sequelize) => {
         type: DataTypes.STRING,
         allowNull: false
       },
+      tipo: {
+        type: DataTypes.STRING,
+        allowNull: false
+      },
       activo: {
         type: DataTypes.BOOLEAN,
         allowNull: false
@@ -37,11 +42,11 @@ export default (sequelize: Sequelize) => {
     },
     {
       sequelize,
-      modelName: "CatInsumos",
+      modelName: "Insumo",
       paranoid: true,
       timestamps: true
     }
   )
 
-  return CatInsumos
+  return Insumo
 }

@@ -5,12 +5,15 @@ import type {
   CreationOptional
 } from "sequelize"
 
-export class PrecioInsumos extends Model<
-  InferAttributes<PrecioInsumos, { omit: "createdAt" | "updatedAt" | "deletedAt" }>,
-  InferCreationAttributes<PrecioInsumos>
+export class Proyecto extends Model<
+  InferAttributes<Proyecto, { omit: "createdAt" | "updatedAt" | "deletedAt" }>,
+  InferCreationAttributes<Proyecto>
 > {
   declare id: CreationOptional<string>
-  declare precio: number
+  declare name: string
+  declare descripcion: string
+  declare fecha: Date
+  declare activo: boolean
 
   declare createdAt: CreationOptional<Date>
   declare updatedAt: CreationOptional<Date>
@@ -18,25 +21,37 @@ export class PrecioInsumos extends Model<
 }
 
 export default (sequelize: Sequelize) => {
-  PrecioInsumos.init(
+  Proyecto.init(
     {
       id: {
         type: DataTypes.UUID,
         defaultValue: DataTypes.UUIDV4,
         primaryKey: true
       },
-      precio: {
-        type: DataTypes.DOUBLE,
+      name: {
+        type: DataTypes.STRING,
+        allowNull: false
+      },
+      descripcion: {
+        type: DataTypes.STRING,
+        allowNull: false
+      },
+      fecha: {
+        type: DataTypes.DATE,
+        allowNull: false
+      },
+      activo: {
+        type: DataTypes.BOOLEAN,
         allowNull: false
       },
     },
     {
       sequelize,
-      modelName: "PrecioInsumos",
+      modelName: "Proyecto",
       paranoid: true,
       timestamps: true
     }
   )
 
-  return PrecioInsumos
+  return Proyecto
 }

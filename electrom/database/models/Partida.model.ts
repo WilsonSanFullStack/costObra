@@ -5,13 +5,15 @@ import type {
   CreationOptional
 } from "sequelize"
 
-export class CatApu extends Model<
-  InferAttributes<CatApu, { omit: "createdAt" | "updatedAt" | "deletedAt" }>,
-  InferCreationAttributes<CatApu>
+export class Partida extends Model<
+  InferAttributes<Partida, { omit: "createdAt" | "updatedAt" | "deletedAt" }>,
+  InferCreationAttributes<Partida>
 > {
   declare id: CreationOptional<string>
-  declare name: string
-  declare activo: boolean
+  declare codigo: string
+  declare descripcion: string
+  declare cantidad: number
+  declare orden: string
 
   declare createdAt: CreationOptional<Date>
   declare updatedAt: CreationOptional<Date>
@@ -19,29 +21,37 @@ export class CatApu extends Model<
 }
 
 export default (sequelize: Sequelize) => {
-  CatApu.init(
+  Partida.init(
     {
       id: {
         type: DataTypes.UUID,
         defaultValue: DataTypes.UUIDV4,
         primaryKey: true
       },
-      name: {
+      codigo: {
         type: DataTypes.STRING,
         allowNull: false
       },
-      activo: {
-        type: DataTypes.BOOLEAN,
+      descripcion: {
+        type: DataTypes.STRING,
+        allowNull: false
+      },
+      cantidad: {
+        type: DataTypes.FLOAT,
+        allowNull: false
+      },
+      orden: {
+        type: DataTypes.STRING,
         allowNull: false
       },
     },
     {
       sequelize,
-      modelName: "CatApu",
+      modelName: "Partida",
       paranoid: true,
       timestamps: true
     }
   )
 
-  return CatApu
+  return Partida
 }
