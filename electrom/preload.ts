@@ -1,5 +1,11 @@
-import { contextBridge } from "electron"
+import { contextBridge, ipcRenderer, IpcRendererEvent } from "electron";
 
 contextBridge.exposeInMainWorld("api", {
-  ping: () => "pong"
-})
+  invoke: (channel: string, ...args: unknown[]) =>
+    ipcRenderer.invoke(channel, ...args),
+
+  on: (event: string, callback: (data: unknown) => void) =>
+    ipcRenderer.on(event, (_: IpcRendererEvent, data: unknown) =>
+      callback(data),
+    ),
+});

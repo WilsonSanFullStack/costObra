@@ -1,7 +1,7 @@
-import { sequelize } from "./db"
-import { ModelStatic } from "sequelize"
+import { sequelize } from "./db.ts"
+import type { ModelStatic } from "sequelize"
 
-import { Unidad } from "./models/Unidad.model"
+import { Unidad } from "./models/Unidad.model.ts"
 
 
 export interface DBModels {
