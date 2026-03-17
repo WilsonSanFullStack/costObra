@@ -17,16 +17,17 @@ export async function loadModels() {
     try {
       const filePath = path.join(modelsPath, file);
       const fileUrl = new URL(`file://${filePath}`).href;
-      
-      const module = await import(fileUrl);
 
+      const module = await import(fileUrl);
       // Buscar la función exportada por defecto (la que inicializa el modelo)
       const initFunction = module.default;
-      
+
       if (initFunction && typeof initFunction === "function") {
         // ✅ Pasar la instancia de sequelize a la función
         await initFunction(sequelize);
-      } 
+      }
+      console.log('sequelize.models in archivo loadModelos', sequelize.models)
+
     } catch (error) {
       console.error(`❌ Error cargando modelo ${file}:`, error);
     }

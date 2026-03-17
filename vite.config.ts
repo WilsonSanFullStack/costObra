@@ -8,19 +8,31 @@ export default defineConfig({
   base: "./",
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, "./src"),
+      "@src": path.resolve(__dirname, "src"),
+      "@shared": path.resolve(__dirname, "shared"),
     },
   },
   plugins: [
     electron([
       {
         entry: "./electrom/main.ts",
-        // onstart(options) {
-        // options.startup()
-        // }
+        vite: {
+          resolve: {
+            alias: {
+              "@shared": path.resolve(__dirname, "shared"),
+            },
+          },
+        },
       },
       {
         entry: "./electrom/preload.ts",
+        vite: {
+          resolve: {
+            alias: {
+              "@shared": path.resolve(__dirname, "shared"),
+            },
+          },
+        },
       },
     ]),
     tailwindcss(),

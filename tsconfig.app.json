@@ -8,12 +8,13 @@
     "types": ["vite/client"],
     "skipLibCheck": true,
 
-    // types 
+    // types
     "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"]
+      "@src/*": ["src/*"],
+      "@shared/*": ["shared/*"]
     },
-    
+
     /* Bundler mode */
     "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,
@@ -30,5 +31,5 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true
   },
-  "include": ["src"]
+  "include": ["src", "electrom", "shared"]
 }

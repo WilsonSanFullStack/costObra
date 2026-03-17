@@ -1,19 +1,21 @@
 import { ipcMain } from "electron";
-import { unidadRouter } from "../modules/unidad/unidad.router.ts";
+// import type { IpcMap } from "../core/types.d.ts";
+import {unidadRouter} from '../modules/unidad/router.ts'
+import {categoriaInsumoRouter} from '../modules/categoriaInsumos/router.ts'
 
-type IpcHandler = (...args: any[]) => any;
-type IpcRouter = Record<string, IpcHandler>;
+// type Channels = keyof IpcMap;
 
-function register(router: IpcRouter) {
+function register(router: Record<string, any>) {
   Object.entries(router).forEach(([channel, handler]) => {
     console.log("🔌 IPC:", channel);
 
-    ipcMain.handle(channel, (_, ...args) => {
-      return handler(...args);
+    ipcMain.handle(channel, async (_, data) => {
+      return handler(data);
     });
   });
 }
 
 export function registerIpcHandlers() {
   register(unidadRouter);
+  register(categoriaInsumoRouter);
 }

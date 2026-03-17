@@ -9,13 +9,14 @@ export async function index() {
     await loadModels();
 
     // 2. Cargar relaciones
-    loadAssociations();
+    await loadAssociations();
 
     // 3. Sincronizar base de datos
-    await sequelize.sync({ force: false }); // Usa alter en desarrollo
-
+    await sequelize.sync({ force: true }); // Usa alter en desarrollo
+// console.log('sequelize.models en index', sequelize.models)
   } catch (error) {
     console.error("❌ Error inicializando DB:", error);
     throw error; // Re-lanzar para que se detecte en main.ts
   }
 }
+

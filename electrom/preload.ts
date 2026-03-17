@@ -1,4 +1,5 @@
-import { contextBridge, ipcRenderer, IpcRendererEvent } from "electron";
+import { contextBridge, ipcRenderer } from "electron";
+import type {IpcRendererEvent} from 'electron'
 
 contextBridge.exposeInMainWorld("api", {
   invoke: (channel: string, ...args: unknown[]) =>
