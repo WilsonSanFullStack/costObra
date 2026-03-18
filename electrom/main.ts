@@ -1,38 +1,34 @@
 import { app, BrowserWindow } from "electron";
+import { sequelize } from "./database/db.ts";
 import path from "path";
-import { index } from "./database/index.ts";
+// import { index } from "./database/index.ts";
 import { fileURLToPath } from "url";
-// import { loadRouters } from "./ipc/loader.ts";
 import { registerIpcHandlers } from "./ipc/ipcMin.ts";
-
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-
-
 
 let win: BrowserWindow | null = null;
 
 app.whenReady().then(async () => {
   //TODO conexion de base de datos
-  await index(); //sincroniza la db sin eliminar datos
+  // await index(); //sincroniza la db sin eliminar datos
+  await sequelize.sync({ force: true }); // Usa alter en desarrollo
   console.log("🔹 Base de datos lista");
 
   //TODO carga de ipcMain
-  
+
   await registerIpcHandlers();
-  
 
   function createWindow() {
     win = new BrowserWindow({
       width: 1200,
       height: 800,
       webPreferences: {
-        preload: path.join(__dirname, '../dist-electron', 'preload.js'),
+        preload: path.join(__dirname, "../dist-electron", "preload.js"),
         // preload: './preload.ts',
         contextIsolation: true,
         nodeIntegration: true,
-        
       },
     });
 
@@ -50,6 +46,9 @@ app.whenReady().then(async () => {
     //   win.loadFile(htmlPath);
     //   // win.loadFile(path.join(__dirname, "../dist/index.html"))
     // }
+    if (process.env.NODE_ENV === "development") {
+  win.webContents.openDevTools();
+}
   }
 
   app.whenReady().then(() => {

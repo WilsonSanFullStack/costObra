@@ -2,6 +2,7 @@ import { ipcMain } from "electron";
 // import type { IpcMap } from "../core/types.d.ts";
 import {unidadRouter} from '../modules/unidad/router.ts'
 import {categoriaInsumoRouter} from '../modules/categoriaInsumos/router.ts'
+import { insumoRouter } from "../modules/insumos/router.ts";
 
 // type Channels = keyof IpcMap;
 
@@ -18,4 +19,5 @@ function register(router: Record<string, any>) {
 export function registerIpcHandlers() {
   register(unidadRouter);
   register(categoriaInsumoRouter);
+  register(insumoRouter)
 }

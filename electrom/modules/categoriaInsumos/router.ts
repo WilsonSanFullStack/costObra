@@ -1,8 +1,9 @@
-import type { ICategoriaInsumos } from "../../../shared/types/ipcMap.ts";
+import { IPC } from "../../../shared/ipc/ipcRoutes.ts";
 import { createCategoriaInsumo, getAllCategoriaInsumo } from "./service.ts";
+import type { ICategoriaInsumos } from "@shared/types";
 
 export const categoriaInsumoRouter = {
-  "categoriaInsumo:create": () => getAllCategoriaInsumo(),
-  "categoriaInsumo:getAll": (data: ICategoriaInsumos) =>
+  [IPC.categoriaInsumo.create]: (data: ICategoriaInsumos) =>
     createCategoriaInsumo(data),
+  [IPC.categoriaInsumo.getAll]: () => getAllCategoriaInsumo(),
 };

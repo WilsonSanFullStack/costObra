@@ -1,9 +1,10 @@
 import { getModelos } from "../../database/modelos.ts";
 import { BaseRepository } from "../../core/baseRepository.ts";
 
-const {Unidad} = getModelos()
-export class UnidadRepository extends BaseRepository {
+const { Insumo } = getModelos();
+
+export class InsumoRepository extends BaseRepository {
   constructor() {
-    super(Unidad);
+    super(Insumo);
   }
 }

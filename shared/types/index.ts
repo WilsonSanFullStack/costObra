@@ -1,4 +1,5 @@
 export * from './modules/unidad'
 export * from './modules/categoriaInsumos'
+export * from './modules/insumo'
 export * from './api'
 export * from './ipcMap'

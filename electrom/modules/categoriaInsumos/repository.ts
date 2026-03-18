@@ -1,14 +1,10 @@
-import { modelos } from "../../database/modelos.ts";
-import type { ICategoriaInsumos } from "../../../shared/types/ipcMap.ts";
+import { getModelos } from "../../database/modelos.ts";
+import { BaseRepository } from "../../core/baseRepository.ts";
 
-export class CategoriaInsumoRepository {
-  async getAll() {
-    return modelos.CategoriaInsumo.findAll({
-      attributes: ["id", "name", "activo"],
-    });
-  }
+const { CategoriaInsumo } = getModelos();
 
-  async create(data: ICategoriaInsumos) {
-    return modelos.CategoriaInsumo.create(data);
+export class CategoriaInsumoRepository extends BaseRepository {
+  constructor() {
+    super(CategoriaInsumo);
   }
 }

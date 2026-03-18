@@ -11,4 +11,4 @@ export interface ErrorResponse {
   error?: any;
 }
 
-export type ApiResponse<T> = SuccessResponse<T> | ErrorResponse;
+export type TApiResponse<T> = SuccessResponse<T> | ErrorResponse;

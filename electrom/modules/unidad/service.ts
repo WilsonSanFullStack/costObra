@@ -1,57 +1,17 @@
-// import { emit } from "../../enventBus.ts";
-// import { UnidadRepository } from "./repository.ts";
-// import type { IUnidad } from "../../core/types";
-
-// const repo = new UnidadRepository();
-
-// export async function createUnidad(data: IUnidad) {
-//   const res = await repo.create(data);
-//   const item = res.dataValues;
-//   emit("unidad:create", item);
-//   return item;
-// }
-
-// export async function getAllUnidades() {
-//   const item = await repo.getAll();
-//   console.log(item);
-//   const res = item[0].dataValues;
-//   return res;
-// }
-
-// export async function deleteUnidad(id: string) {
-//   const res = await repo.destroy(id);
-//   return res;
-// }
-
 import { UnidadRepository } from "./repository.ts";
 import { toPlain } from "../../core/utils.ts";
 import { handleError } from "../../core/errorHandler.ts";
-import type { ApiResponse, IUnidad } from "@shared/types";
+import type { TApiResponse, IUnidad } from "@shared/types";
 import { emit } from "../../enventBus.ts";
 import { EVENT } from "../../../shared/ipc/eventRoutes.ts";
 
 const repo = new UnidadRepository();
-console.log('repo', repo)
-
-export async function getAllUnidades(): Promise<ApiResponse<IUnidad[]>> {
-  try {
-    const res = await repo.getAll();
-    return {
-      success: true,
-      data: toPlain<IUnidad[]>(res),
-    };
-  } catch (error) {
-    return handleError(error, "Error al obtener unidades");
-  }
-}
 
 export async function createUnidad(
   data: IUnidad,
-): Promise<ApiResponse<IUnidad>> {
+): Promise<TApiResponse<IUnidad>> {
   try {
-    console.log("data", data)
     const res = await repo.create(data);
-    console.log('res', res)
     const item = toPlain<IUnidad>(res);
 
     emit(EVENT.unidad.create, item);
@@ -65,10 +25,23 @@ export async function createUnidad(
   }
 }
 
+export async function getAllUnidades(): Promise<TApiResponse<IUnidad[]>> {
+  try {
+    const res = await repo.getAll();
+    return {
+      success: true,
+      data: toPlain<IUnidad[]>(res),
+    };
+  } catch (error) {
+    return handleError(error, "Error al obtener unidades");
+  }
+}
+
+
 export async function updateUnidad(
   id: string,
   data: any,
-): Promise<ApiResponse<any>> {
+): Promise<TApiResponse<any>> {
   try {
     const res = await repo.update(id, data);
 
@@ -79,7 +52,7 @@ export async function updateUnidad(
       };
     }
 
-    const item = toPlain(res);
+    const item = toPlain<IUnidad>(res);
 
     emit(EVENT.unidad.update, item);
 
@@ -92,7 +65,7 @@ export async function updateUnidad(
   }
 }
 
-export async function deleteUnidad(id: string): Promise<ApiResponse<null>> {
+export async function deleteUnidad(id: string): Promise<TApiResponse<null>> {
   try {
     const deleted = await repo.destroy(id);
 

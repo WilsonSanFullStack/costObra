@@ -1,5 +1,3 @@
-
-
 export class BaseRepository {
   protected model: any;
 
@@ -8,7 +6,11 @@ export class BaseRepository {
   }
 
   async getAll() {
-    return this.model.findAll();
+    return this.model.findAll({
+      attributes: {
+        exclude: ["createdAt", "updatedAt", "deletedAt"],
+      },
+    });
   }
 
   async getById(id: string) {
@@ -16,8 +18,6 @@ export class BaseRepository {
   }
 
   async create(data: any) {
-    console.log('data baseRepository', data)
-    console.log('this',this.model.create(data))
     return this.model.create(data);
   }
 
